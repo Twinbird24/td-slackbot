@@ -4,6 +4,7 @@
   "description": "The weekend slackbot",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"test\""
   },
   "repository": {
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/Twinbird24/td-slackbot#readme",
   "dependencies": {
     "@slack/bolt": "^3.12.1",
+    "dayjs": "^1.11.5",
     "dotenv": "^16.0.3"
   }
 }
