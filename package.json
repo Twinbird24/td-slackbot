@@ -1,0 +1,19 @@
+{
+  "name": "td-slackbot",
+  "version": "1.0.0",
+  "description": "The weekend slackbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twinbird24/td-slackbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Twinbird24/td-slackbot/issues"
+  },
+  "homepage": "https://github.com/Twinbird24/td-slackbot#readme"
+}
