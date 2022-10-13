@@ -11,7 +11,32 @@ const app = new App({
 });
 
 app.message("hello", async ({ message, say }) => {
-  await say(`Hey there <@${message.user}>!`);
+  await say({
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `Hey there <@${message.user}>!`,
+        },
+        accessory: {
+          type: "button",
+          text: {
+            type: "plain_text",
+            text: "Click Me",
+          },
+          action_id: "button_click",
+        },
+      },
+    ],
+    text: `Hey there <@${message.user}>!`,
+  });
+});
+
+app.action("button_click", async ({ body, ack, say }) => {
+  // Acknowledge the action
+  await ack();
+  await say(`<@${body.user.id}> clicked the button`);
 });
 
 (async () => {
@@ -19,5 +44,3 @@ app.message("hello", async ({ message, say }) => {
 
   console.log("⚡️ Bolt app is running!");
 })();
-
-// socket token: xapp-1-A04601VNCTZ-4242869649616-c11b2b398f7ec3078b74eb0efcda075eeb31950dd3182088464a2a25c7480ed3
