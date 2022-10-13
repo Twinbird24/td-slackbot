@@ -1,4 +1,8 @@
 require("dotenv").config();
+const dayjs = require('dayjs');
+const isSameOrAfter = require('dayjs/plugin/isSameOrAfter')
+
+dayjs.extend(isSameOrAfter)
 
 const { App } = require("@slack/bolt");
 
@@ -10,27 +14,14 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
 });
 
-app.message("hello", async ({ message, say }) => {
-  await say({
-    blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `Hey there <@${message.user}>!`,
-        },
-        accessory: {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: "Click Me",
-          },
-          action_id: "button_click",
-        },
-      },
-    ],
-    text: `Hey there <@${message.user}>!`,
-  });
+app.message(/week\s*end/i, async ({ say }) => {
+  const fridayAt5pm = dayjs().day(5).minute(0).hour(17);
+
+  if (dayjs().isSameOrAfter(fridayAt5pm)) {
+    await say({text: 'Yes'});
+  } else {
+    await say({text: 'Nope!'});
+  }
 });
 
 app.action("button_click", async ({ body, ack, say }) => {
