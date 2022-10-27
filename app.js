@@ -14,6 +14,14 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
 });
 
+const channelID = "C04748P7D32";
+
+app.client.chat.scheduleMessage({
+  channel: channelID,
+  text: "Hello!",
+  post_at: dayjs().add(10, "seconds").unix()
+});
+
 app.message(/week\s*end/i, async ({ say }) => {
   const fridayAt5pm = dayjs().day(5).minute(0).hour(17);
 
