@@ -23,7 +23,7 @@ app.message(/week\s*end/i, async ({ say }) => {
         {
           type: "section",
           text: {
-            type: "mrkdwn",
+            type: "plain_text",
             text: "Have a great weekend everyone!",
           },
         },
@@ -40,9 +40,9 @@ app.message(/week\s*end/i, async ({ say }) => {
         {
           type: "section",
           text: {
-            type: "mrkdwn",
+            type: "plain_text",
             text: "Nope!",
-          },
+          }
         },
         {
           type: "image",
