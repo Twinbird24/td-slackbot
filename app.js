@@ -1,8 +1,8 @@
 require("dotenv").config();
-const dayjs = require('dayjs');
-const isSameOrAfter = require('dayjs/plugin/isSameOrAfter')
+const dayjs = require("dayjs");
+const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 
-dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrAfter);
 
 const { App } = require("@slack/bolt");
 
@@ -18,9 +18,39 @@ app.message(/week\s*end/i, async ({ say }) => {
   const fridayAt5pm = dayjs().day(5).minute(0).hour(17);
 
   if (dayjs().isSameOrAfter(fridayAt5pm)) {
-    await say({text: 'Yes'});
+    await say({
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "Have a great weekend everyone!",
+          },
+        },
+        {
+          type: "image",
+          image_url: "https://i.giphy.com/media/utUEJY2cXzVvnrB152/giphy.webp",
+          alt_text: "apple",
+        },
+      ],
+    });
   } else {
-    await say({text: 'Nope!'});
+    await say({
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "Nope!",
+          },
+        },
+        {
+          type: "image",
+          image_url: "https://i.giphy.com/media/utUEJY2cXzVvnrB152/giphy.webp",
+          alt_text: "apple",
+        },
+      ],
+    });
   }
 });
 
