@@ -1,5 +1,9 @@
 require("dotenv").config();
 const https = require('https');
+const dayjs = require('dayjs');
+const isSameOrAfter = require('dayjs/plugin/isSameOrAfter')
+
+dayjs.extend(isSameOrAfter)
 
 const { App } = require("@slack/bolt");
 
@@ -13,9 +17,6 @@ const app = new App({
 
 app.message("hello", async ({ message, say }) => {
   await say({
-    blocks: [
-      {
-        type: "section",
         text: {
           type: "mrkdwn",
           text: `Hey there <@${message.user}>!`,
@@ -28,19 +29,17 @@ app.message("hello", async ({ message, say }) => {
           },
           action_id: "button_click",
         },
-      },
-    ],
-    text: `Hey there <@${message.user}>!`,
   });
 });
 
-app.action("button_click", async ({ body, ack, say }) => {
-  // Acknowledge the action
-  await ack();
-  await say(`<@${body.user.id}> clicked the button`);
-  https.get('https://api.giphy.com/v1/gifs/random?api_key=3wsd8o4aHRtmY4iBrs93tJwblG2EDt8W&tag=danielcraig&rating=g', (resp) => {
+app.message(/week\s*end/i, async ({ say }) => {
+  if (dayjs().isSameOrAfter(fridayAt5pm)) {
+  } else {
 
+  // Acknowledge the action
+  https.get('https://api.giphy.com/v1/gifs/random?api_key=3wsd8o4aHRtmY4iBrs93tJwblG2EDt8W&tag=danielcraig&rating=g', (resp) => {
   })
+}
 });
 
 (async () => {

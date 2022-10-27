@@ -4,6 +4,7 @@
   "description": "The weekend slackbot",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"test\""
   },
   "repository": {
@@ -20,6 +21,7 @@
     "@giphy/js-fetch-api": "^4.4.0",
     "@giphy/react-components": "^6.2.0",
     "@slack/bolt": "^3.12.1",
+    "dayjs": "^1.11.5",
     "dotenv": "^16.0.3"
   }
 }
