@@ -1,5 +1,6 @@
 require("dotenv").config();
 const dayjs = require("dayjs");
+// var durationPlugin = require('dayjs/plugin/duration');
 const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 
 dayjs.extend(isSameOrAfter);
@@ -15,14 +16,25 @@ const app = new App({
 });
 
 const channelID = "C04748P7D32";
+const post_time = dayjs().add(10, "seconds").unix();
 
-app.client.chat.scheduleMessage({
-  channel: channelID,
-  text: "Hello!",
-  post_at: dayjs().add(10, "seconds").unix()
-});
+
+const duration = durationPlugin({seconds: 30});
+
+// setInterval(() => {
+
+// app.client.chat.scheduleMessage({
+//   channel: channelID,
+//   text: "Hello!",
+//   post_at: post_time,
+// });
+
+// }, duration.asMilliseconds());
+
+
 
 app.message(/week\s*end/i, async ({ say }) => {
+
   const fridayAt5pm = dayjs().day(5).minute(0).hour(17);
 
   if (dayjs().isSameOrAfter(fridayAt5pm)) {
