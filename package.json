@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Twinbird24/td-slackbot#readme",
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.4.0",
+    "@giphy/react-components": "^6.2.0",
     "@slack/bolt": "^3.12.1",
     "dotenv": "^16.0.3"
   }

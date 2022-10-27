@@ -1,4 +1,5 @@
 require("dotenv").config();
+const https = require('https');
 
 const { App } = require("@slack/bolt");
 
@@ -37,6 +38,9 @@ app.action("button_click", async ({ body, ack, say }) => {
   // Acknowledge the action
   await ack();
   await say(`<@${body.user.id}> clicked the button`);
+  https.get('https://api.giphy.com/v1/gifs/random?api_key=3wsd8o4aHRtmY4iBrs93tJwblG2EDt8W&tag=danielcraig&rating=g', (resp) => {
+
+  })
 });
 
 (async () => {
