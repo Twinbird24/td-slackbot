@@ -4,7 +4,7 @@
   "description": "The weekend slackbot",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "echo \"test\""
   },
   "repository": {
@@ -20,6 +20,7 @@
   "dependencies": {
     "@slack/bolt": "^3.12.1",
     "dayjs": "^1.11.5",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
   }
 }
